@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 def likeLike(driver, keyword=""):
     n = 0
     n_all = 0
-    n_sleep = 100
+    n_interval = 100
     like_amount = 2000
     try_count = range(150)
     
@@ -45,9 +45,11 @@ def likeLike(driver, keyword=""):
         driver.find_elements_by_css_selector('._9AhH0')[9].click()
         sleep(2)
         
-        n_sleep_count = n_sleep
+        old_n = 0
+        n_interval_countdown = n_interval
         dt = datetime.datetime.now()
         is_except_count_error = False
+        old_mouse_position = pgui.position()
         print('-'*100)
         print("　"*5+"！"*15)
         print("　"*5+"！！音量を確認してください！！")
@@ -59,7 +61,7 @@ def likeLike(driver, keyword=""):
                 n += 1
                 sleep(0.1)
             except:
-                n_sleep_count -= 1
+                n_interval_countdown -= 1
                 
             try:
                 driver.find_elements_by_css_selector('.wpO6b')[2].click() #next
@@ -78,11 +80,21 @@ def likeLike(driver, keyword=""):
                 is_except_count_error = True
                 raise ValueError("`except_count` exceeded 10!!")
 
-            if n_sleep_count < 0:
-                print("sleep:"+str(n))
+            if n_interval_countdown < 0:
+                print("interval: "+str(n))
+                
+                if old_mouse_position == pgui.position() and old_n == n:
+                    # pgui.press('win'); sleep(0.03); pgui.press('win')
+                    pgui.press('shift')
+                    pass
+                else:
+                    old_mouse_position = pgui.position()
+                    old_n = n
+                    
                 sleep(2)
-                n_sleep_count = n_sleep
-            n_sleep_count -= 1
+                n_interval_countdown = n_interval
+            n_interval_countdown -= 1
+            
             sleep(1.2)
 
         print('Done successfully!')
