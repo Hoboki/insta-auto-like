@@ -20,4 +20,4 @@ python like.py
 python3 like.py
 ```
 
-[ほぼきのインスタグラム](http://instagram.com/hoboki.jp)
+[【ほぼきのインスタグラム】](http://instagram.com/hoboki.jp)
