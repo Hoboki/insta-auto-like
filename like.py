@@ -15,7 +15,7 @@ def main():
     user_name = user_names[int(lists_num)]
     password = passwords[int(lists_num)]
     print(user_name+"で実行します")
-    keywords = input('【　　　Key Word　　　】')
+    keywords = input('【      Key Word      】')
     if keywords == "":
         print("後でキーワードを入力してください")
 
