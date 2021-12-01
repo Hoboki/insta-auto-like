@@ -8,10 +8,10 @@
 
 以下はコマンドプロンプトで最初だけ実行してください。
 ```cmd
-pip install ctypes playsound pyautogui selenium webdriver_manager traceback
+pip install playsound==1.3.0 pyautogui==0.9.52 selenium==3.141.0 webdriver-manager==3.4.0
 ```
 
-以下を実行すると始まります。
+insta-auto-likeディレクトリに移動し、以下を実行すると自動いいねが開始します。
 ```cmd
 python like.py
 ```
@@ -19,3 +19,5 @@ python like.py
 ```cmd
 python3 like.py
 ```
+
+[ほぼきのインスタグラム](http://instagram.com/hoboki.jp)
