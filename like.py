@@ -15,7 +15,7 @@ def main():
     user_name = user_names[int(lists_num)]
     password = passwords[int(lists_num)]
     print(user_name+"で実行します")
-    keywords = input('【      Key Word      】')
+    keywords = input('【       Key Word       】')
     if keywords == "":
         print("後でキーワードを入力してください")
 
@@ -25,7 +25,7 @@ def main():
 
     likeChrome(keywords=keywords.split(), user_name=user_name, password=password)
     
-    playsound("pinpon.mp3")
+    playsound(os.getcwd() + '\pinpon.mp3')
     
     shutdownOrSleep(shutdown_confirm=shutdown_confirm)
 
