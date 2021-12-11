@@ -90,7 +90,6 @@ def likeLike(driver, keyword=""):
                 print("interval: "+str(n))
                 
                 if old_mouse_position == pgui.position() and old_n == n:
-                    # pgui.press('win'); sleep(0.03); pgui.press('win')
                     pgui.press('shift')
                     pass
                 else:
