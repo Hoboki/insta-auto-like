@@ -1,3 +1,4 @@
+from random import uniform
 import datetime
 from time import sleep
 import traceback
@@ -57,10 +58,15 @@ def likeLike(driver, keyword=""):
         print("Start Time:", dt.strftime ("%m/%d %H:%M:%S"))
         while n<like_amount:
             try:
-                driver.find_elements_by_css_selector('.wpO6b')[4].click() #like 
+                button = driver.find_elements_by_css_selector('.wpO6b')[4] 
+                is_unliked = len(button.find_elements_by_xpath("div")) == 2
+                if is_unliked:
+                    button.click() #like
+                    pass
+                
                 n += 1
                 sleep(0.1)
-            except:
+            except Exception:
                 n_interval_countdown -= 1
                 
             try:
@@ -95,7 +101,8 @@ def likeLike(driver, keyword=""):
                 n_interval_countdown = n_interval
             n_interval_countdown -= 1
             
-            sleep(1.2)
+            # Randomize like speed
+            sleep(uniform(1, 1.5))
 
         print('Done successfully!')
     
