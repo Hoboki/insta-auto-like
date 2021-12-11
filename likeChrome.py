@@ -15,7 +15,7 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
 
         sleep(1)
         driver.find_elements_by_tag_name('input')[0].send_keys(user_name) #id
-        driver.find_elements_by_tag_name('input')[1].send_keys(password) #passwd
+        driver.find_elements_by_tag_name('input')[1].send_keys(password) #password
         driver.find_elements_by_tag_name('button')[1].click() #login
 
         driver.set_window_size(640, 1200)
