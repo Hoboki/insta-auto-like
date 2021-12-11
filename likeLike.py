@@ -61,6 +61,7 @@ def likeLike(driver, keyword=""):
                 button = driver.find_elements_by_css_selector('.wpO6b')[4] 
                 is_unliked = len(button.find_elements_by_xpath("div")) == 2
                 if is_unliked:
+                    sleep(uniform(0, 0.5)) # Randomize like speed
                     button.click() #like
                     pass
                 
@@ -100,8 +101,7 @@ def likeLike(driver, keyword=""):
                 n_interval_countdown = n_interval
             n_interval_countdown -= 1
             
-            # Randomize like speed
-            sleep(uniform(1, 1.5))
+            sleep(1)
 
         print('Done successfully!')
     
