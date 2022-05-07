@@ -1,18 +1,20 @@
-from random import uniform
 import datetime
 from time import sleep
 import traceback
+from random import uniform
 import pyautogui as pgui
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 
+dt = datetime.datetime
+
+def now():
+    return dt.now().strftime("%m/%d %H:%M:%S")
 
 def likeLike(driver, keyword=""):
     n = 0
     n_all = 0
     n_interval = 100
-    like_amount = 2000
+    like_amount = 0
     try_count = range(150)
     
     try:
@@ -45,24 +47,23 @@ def likeLike(driver, keyword=""):
 
         driver.find_elements_by_css_selector('._9AhH0')[9].click()
         sleep(2)
-        
         old_n = 0
         n_interval_countdown = n_interval
-        dt = datetime.datetime.now()
         is_except_count_error = False
         old_mouse_position = pgui.position()
         print('-'*100)
-        print("　"*5+"！"*15)
-        print("　"*5+"！！音量を確認してください！！")
-        print("　"*5+"！"*15)
-        print("Start Time:", dt.strftime ("%m/%d %H:%M:%S"))
-        while n<like_amount:
+        print("　"*5+"！"*21)
+        print("　"*5+"！！！！！音量を確認してください！！！！！")
+        print("　"*5+"！"*21)
+        print("Start Time:", now())
+        while n < like_amount:
             try:
-                button = driver.find_elements_by_css_selector('.wpO6b')[4] 
-                is_unliked = len(button.find_elements_by_xpath("div")) == 2
+                btns = driver.find_elements_by_css_selector('.wpO6b')
+                like_btn = btns[5]
+                is_unliked = len(like_btn.find_elements_by_xpath("div")) == 2
                 if is_unliked:
                     sleep(uniform(0, 0.5)) # Randomize like speed
-                    button.click() #like
+                    like_btn.click()
                     pass
                 
                 n += 1
@@ -71,12 +72,12 @@ def likeLike(driver, keyword=""):
                 n_interval_countdown -= 1
                 
             try:
-                driver.find_elements_by_css_selector('.wpO6b')[2].click() #next
+                next_btn = btns[3]
+                next_btn.click()
                 n_all += 1
                 except_count = 0
             except:
-                el = driver.find_element_by_css_selector('.wpO6b')
-                driver.execute_script("arguments[2].click();", el)
+                driver.execute_script("arguments[3].click();", btns)
                 n_all += 1
                 print(n, ": Exception Proceeding executed!!")
                 except_count += 1
@@ -109,10 +110,9 @@ def likeLike(driver, keyword=""):
         traceback.print_exc()
 
     if 'n' in locals():
-            print(keyword+", liked: "+str(n))
-            print("n_all :", n_all)
-            dt = datetime.datetime.now()
-            print("End Time:", dt.strftime ("%m/%d %H:%M:%S"))
+            print(f"{keyword}, liked: {n}")
+            print(f"n_all: {n_all}")
+            print("End Time:", now())
             print('-'*100)
 
     return is_except_count_error

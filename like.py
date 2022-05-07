@@ -1,31 +1,29 @@
 import os
 import ctypes
-from playsound import playsound
+
 from likeChrome import likeChrome
+from config import USERNAMES, PASSWORDS, SOUND_PATH
 
 
 def main():
-    
-    user_names = ["hoboki.jp", "naniwatoukeigaku", "soymafia_osaka"]
-    passwords =["ki2064/", "wpyrki", "2064kichi"]
-    print(user_names)
+    print(USERNAMES)
     lists_num = input('【ユーザー番号(半角数字)】')
     if lists_num == "":
         lists_num = 0
-    user_name = user_names[int(lists_num)]
-    password = passwords[int(lists_num)]
+    user_name = USERNAMES[int(lists_num)]
+    password = PASSWORDS[int(lists_num)]
     print(user_name+"で実行します")
     keywords = input('【       Key Word       】')
     if keywords == "":
         print("後でキーワードを入力してください")
 
     shutdown_confirm = input("【終了後にスリープ/シャットダウンしますか？[s/u]】")
-
     print("！！音量を確認してください！！")
 
     likeChrome(keywords=keywords.split(), user_name=user_name, password=password)
     
-    playsound(os.getcwd() + '\pinpon.mp3')
+    from playsound import playsound
+    playsound(SOUND_PATH)
     
     shutdownOrSleep(shutdown_confirm=shutdown_confirm)
 

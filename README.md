@@ -1,17 +1,17 @@
-# Instagram Automation of LIKE!! (for Windows)
-インスタグラムの自動いいねアルゴリズムです。ご自由にお使いください。Macでは試していません。
+# Instagram-AUTO-LIKE for Windows
+インスタグラムの自動いいねアルゴリズムです。簡単にPythonのルールを理解している人向けです。ご自由にお使いください。Macでは試していません。
 
-時々Metaが仕様を変更すると使えなくなることがありますが、気が向けば対応します。
+時々Metaが仕様を変更すると使えなくなることがありますが、気が向けば対応します。中身は簡単ですので変更してみてください。
 
 # 仕様方法
-簡単にPythonのルールを理解している人用です。
+実行前にPythonを導入しておいてください。
 
-以下はコマンドプロンプトで最初だけ実行してください。
-```cmd
-pip install playsound==1.3.0 pyautogui==0.9.52 selenium==3.141.0 webdriver-manager==3.4.0
+1. setup.batを実行またはコマンドプロンプトで以下を実行
 ```
-
-insta-auto-likeディレクトリに移動し、以下を実行すると自動いいねが開始します。
+pip install --upgrade pip && pip install -r requirements.txt --user
+```
+2. config.example.pyをコピーしてconfig.pyを作成。アカウント名とパスワードを変更。
+2. insta-auto-likeディレクトリに移動し、以下を実行。アカウントを選択、ハッシュタグの指定、スリープ処理の選択後いいねが自動で始まります。
 ```cmd
 python like.py
 ```
@@ -21,3 +21,6 @@ python3 like.py
 ```
 
 <a href="http://instagram.com/hoboki.jp" target="_blank">【ほぼきのインスタグラム】</a>
+
+# 実行環境
+Python 3.9.4
