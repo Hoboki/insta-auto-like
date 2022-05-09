@@ -3,7 +3,7 @@ from time import sleep
 import traceback
 from random import uniform
 import pyautogui as pgui
-
+from config import LIKE_AMOUNT
 
 dt = datetime.datetime
 
@@ -14,7 +14,6 @@ def likeLike(driver, keyword=""):
     n = 0
     n_all = 0
     n_interval = 100
-    like_amount = 0
     try_count = range(150)
     
     try:
@@ -56,7 +55,7 @@ def likeLike(driver, keyword=""):
         print("　"*5+"！！！！！音量を確認してください！！！！！")
         print("　"*5+"！"*21)
         print("Start Time:", now())
-        while n < like_amount:
+        while n < LIKE_AMOUNT:
             try:
                 btns = driver.find_elements_by_css_selector('.wpO6b')
                 like_btn = btns[5]
