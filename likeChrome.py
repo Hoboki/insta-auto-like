@@ -1,5 +1,6 @@
 from time import sleep
 import traceback
+import pyautogui as pgui
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from likeLike import likeLike
@@ -17,9 +18,11 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
         driver.find_elements_by_tag_name('input')[0].send_keys(user_name) #id
         driver.find_elements_by_tag_name('input')[1].send_keys(password) #password
         driver.find_elements_by_tag_name('button')[1].click() #login
-
-        driver.set_window_size(640, 1200)
-        driver.set_window_position(640, 0)
+        
+        size = pgui.size()
+        print(size)
+        driver.set_window_size(size[0] / 3, size[1] * 0.6)
+        driver.set_window_position(size[0] / 3, 0)
 
         for _ in range(150):
             try:
