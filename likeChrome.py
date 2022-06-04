@@ -21,10 +21,10 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
         
         size = pgui.size()
         print(size)
-        driver.set_window_size(size[0] / 3, size[1] * 0.6)
+        driver.set_window_size(size[0] / 3, size[1] * 0.63)
         driver.set_window_position(size[0] / 3, 0)
 
-        for _ in range(150):
+        for _ in range(15):
             try:
                 driver.find_element_by_css_selector('._6q-tv')
                 break
