@@ -2,7 +2,7 @@ import os
 import ctypes
 
 from likeChrome import likeChrome
-from config import USERNAMES, PASSWORDS, SOUND_PATH
+from config import USERNAMES, PASSWORDS, ENABLE_FINISH_SOUND, SOUND_PATH
 
 
 def main():
@@ -18,12 +18,11 @@ def main():
         print("後でキーワードを入力してください")
 
     shutdown_confirm = input("【終了後にスリープ/シャットダウンしますか？[s/u]】")
-    print("！！音量を確認してください！！")
 
     likeChrome(keywords=keywords.split(), user_name=user_name, password=password)
-    
-    from playsound import playsound
-    playsound(SOUND_PATH)
+    if ENABLE_FINISH_SOUND:
+        from playsound import playsound
+        playsound(SOUND_PATH)
     
     shutdownOrSleep(shutdown_confirm=shutdown_confirm)
 

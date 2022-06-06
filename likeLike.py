@@ -19,7 +19,6 @@ def likeLike(driver, keyword=""):
     try:
         for _ in try_count:
             try:
-                print(driver.find_elements_by_css_selector('._acut'))
                 driver.find_elements_by_css_selector('._acut')[4].click() # Header heart mark
                 for _ in try_count:
                     try:
@@ -52,9 +51,6 @@ def likeLike(driver, keyword=""):
         is_except_count_error = False
         old_mouse_position = pgui.position()
         print('-'*100)
-        print("　"*5+"！"*21)
-        print("　"*5+"！！！！！音量を確認してください！！！！！")
-        print("　"*5+"！"*21)
         print("Start Time:", now())
         while n < LIKE_AMOUNT:
             try:
