@@ -1,7 +1,7 @@
 import datetime
 from time import sleep
 import traceback
-from random import uniform, randint
+from random import uniform
 import pyautogui as pgui
 from config import LIKE_AMOUNT
 
@@ -58,7 +58,6 @@ def likeLike(driver, keyword=""):
                 like_btn = btns[4]
                 is_unliked = len(like_btn.find_elements_by_xpath("div")) == 2
                 if is_unliked:
-                    sleep(uniform(0, 0.5)) # Randomize like speed
                     if uniform(0, 1) <= 0.8:
                         like_btn.click()
                 
@@ -103,7 +102,7 @@ def likeLike(driver, keyword=""):
                 n_interval_countdown = n_interval
             n_interval_countdown -= 1
             
-            sleep(1)
+            sleep(2)
 
         print('Done successfully!')
     
