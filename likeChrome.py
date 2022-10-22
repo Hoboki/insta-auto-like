@@ -2,6 +2,7 @@ from time import sleep
 import traceback
 import pyautogui as pgui
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from likeLike import likeLike
 
@@ -15,9 +16,12 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
         driver.get("https://www.instagram.com/")
 
         sleep(1)
-        driver.find_elements_by_tag_name('input')[0].send_keys(user_name) #id
-        driver.find_elements_by_tag_name('input')[1].send_keys(password) #password
-        driver.find_elements_by_tag_name('button')[1].click() #login
+        driver.find_elements(By.TAG_NAME, 'input')[0].send_keys(user_name) #Account name
+        sleep(1)
+        driver.find_elements(By.TAG_NAME, 'input')[1].send_keys(password) #Password
+        sleep(1)
+        driver.find_elements(By.TAG_NAME, 'button')[1].click() #Login button
+        sleep(2)
         
         size = pgui.size()
         print(size)
@@ -26,19 +30,19 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
 
         for _ in range(15):
             try:
-                driver.find_element_by_css_selector('._6q-tv')
+                driver.find_element(By.CSS_SELECTOR, '._6q-tv')
                 break
             except:
                 sleep(0.2)
                 pass
 
         try:
-            driver.find_element_by_css_selector('.HoLwm').click()
+            driver.find_element(By.CSS_SELECTOR, '.HoLwm').click()
         except:
             pass
 
         if keywords==[]:
-            driver.find_elements_by_tag_name('input')[0].send_keys("#")
+            driver.find_elements(By.TAG_NAME, 'input')[0].send_keys("#")
             likeLike(driver=driver)
 
         while keywords!=[]:

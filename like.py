@@ -2,7 +2,7 @@ import os
 import ctypes
 
 from likeChrome import likeChrome
-from config import USERNAMES, PASSWORDS, ENABLE_FINISH_SOUND, SOUND_PATH
+from config import *
 
 
 def main():
