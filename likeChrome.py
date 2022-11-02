@@ -8,20 +8,18 @@ from likeLike import likeLike
 
 # Let's noteの画面サイズ：1200*1920
 
-def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
+def likeChrome(keywords="", username="", password=""):
     try:
         # print(pgui.displayMousePosition())
-
+        
         driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get("https://www.instagram.com/")
-
+        
         sleep(1)
-        driver.find_elements(By.TAG_NAME, 'input')[0].send_keys(user_name) #Account name
-        sleep(1)
+        driver.find_elements(By.TAG_NAME, 'input')[0].send_keys(username) #Account name
         driver.find_elements(By.TAG_NAME, 'input')[1].send_keys(password) #Password
-        sleep(1)
         driver.find_elements(By.TAG_NAME, 'button')[1].click() #Login button
-        sleep(2)
+        sleep(1)
         
         size = pgui.size()
         print(size)
@@ -41,12 +39,13 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
         except:
             pass
 
-        if keywords==[]:
+        if len(keywords):
             driver.find_elements(By.TAG_NAME, 'input')[0].send_keys("#")
             likeLike(driver=driver)
 
-        while keywords!=[]:
+        while len(keywords):
             keyword = keywords.pop(0)
+            sleep(2)
             driver.get("https://www.instagram.com/explore/tags/"+keyword)
             is_except_count_error = likeLike(driver=driver, keyword=keyword)
             if is_except_count_error:
@@ -64,4 +63,4 @@ def likeChrome(keywords="", user_name="handaicompa", password="wpyrki"):
             pass
         
         if keywords != []:
-            likeChrome(keywords=keywords, user_name=user_name, password=password)
+            likeChrome(keywords=keywords, username=username, password=password)

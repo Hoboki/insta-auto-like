@@ -20,36 +20,14 @@ def likeLike(driver, keyword=""):
     
     try:
         for _ in try_count:
-            try:
-                driver.find_elements(By.CSS_SELECTOR, '._acut')[4].click() # Header heart mark
-                for _ in try_count:
-                    try:
-                        driver.find_element(By.CSS_SELECTOR, '._aa61')
-                        break
-                    except:
-                        print('No ._aa61')
-                        sleep(0.2)
-                        pass
-                driver.refresh()
-                break
-            except:
-                print('No ._acut')
-                sleep(0.2)
-                pass
+            els = driver.find_elements(By.CSS_SELECTOR, '._acf_') # Header heart mark
+            if len(els): break
             
         for _ in try_count:
-            try:
-                driver.find_elements(By.CSS_SELECTOR, '._acut')[0]  # Headers
-                for _ in range(2):
-                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                    sleep(0.1)
-                break
-            except:
-                sleep(0.2)
-                pass
-            
-        print(driver.find_elements(By.CSS_SELECTOR, '._aagw'))
-        driver.find_elements(By.CSS_SELECTOR, '._aagw')[8].click() # First post
+            els = driver.find_elements(By.CSS_SELECTOR, '._aagw')
+            if len(els): break
+
+        driver.find_elements(By.CSS_SELECTOR, '._aagw')[11].click() # Third post
         sleep(2)
         old_n = 0
         n_interval_countdown = n_interval
@@ -60,7 +38,7 @@ def likeLike(driver, keyword=""):
         while n < LIKE_AMOUNT:
             try:
                 btns = driver.find_elements(By.CSS_SELECTOR, '._abl-')
-                like_btn = btns[5]
+                like_btn = btns[3]
                 is_unliked = len(like_btn.find_elements(By.XPATH, "div")) == 2
                 if is_unliked:
                     if uniform(0, 1) <= 0.8:
@@ -68,21 +46,21 @@ def likeLike(driver, keyword=""):
                 
                 n += 1
                 if n % 5 == 0:
-                    back_btn = btns[2]
+                    back_btn = btns[0]
                     back_btn.click()
-                    next_btn = btns[3]
+                    next_btn = btns[1]
                     next_btn.click()
                 sleep(0.1)
             except Exception:
                 n_interval_countdown -= 1
                 
             try:
-                next_btn = btns[3]
+                next_btn = btns[1]
                 next_btn.click()
                 n_all += 1
                 except_count = 0
             except:
-                driver.execute_script("arguments[2].click();", btns)
+                driver.execute_script("arguments[3].click();", btns)
                 n_all += 1
                 print(n, ": Exception Proceeding executed!!")
                 except_count += 1
