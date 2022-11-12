@@ -3,9 +3,10 @@ import argparse
 import os
 import random
 import ctypes
+from playsound import playsound
 from distutils.util import strtobool
 
-from likeChrome import likeChrome
+from startChrome import startChrome
 from config import *
 
 
@@ -28,9 +29,8 @@ def main(args):
             print("後でキーワードを入力してください")
         shutdown_confirm = input("【終了後にスリープ/シャットダウンしますか？[s/u]】")
     
-    likeChrome(keywords=keywords.split(), username=username, password=password)
+    startChrome(keywords=keywords.split(), username=username, password=password)
     if ENABLE_FINISH_SOUND:
-        from playsound import playsound
         playsound(SOUND_PATH)
     
     shutdownOrSleep(shutdown_confirm=shutdown_confirm)

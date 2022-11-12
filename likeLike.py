@@ -20,12 +20,11 @@ def likeLike(driver, keyword=""):
     
     try:
         for _ in try_count:
-            els = driver.find_elements(By.CSS_SELECTOR, '._acf_') # Header heart mark
-            if len(els): break
+            if driver.find_elements(By.CSS_SELECTOR, '._acf_'): break # Header heart mark
             
         for _ in try_count:
-            els = driver.find_elements(By.CSS_SELECTOR, '._aagw')
-            if len(els): break
+            if driver.find_elements(By.CSS_SELECTOR, '._aagw'): break
+            sleep(0.2)
 
         driver.find_elements(By.CSS_SELECTOR, '._aagw')[11].click() # Third post
         sleep(2)

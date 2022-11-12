@@ -8,7 +8,7 @@ from likeLike import likeLike
 
 # Let's noteの画面サイズ：1200*1920
 
-def likeChrome(keywords="", username="", password=""):
+def startChrome(keywords="", username="", password=""):
     try:
         # print(pgui.displayMousePosition())
         
@@ -19,29 +19,16 @@ def likeChrome(keywords="", username="", password=""):
         driver.find_elements(By.TAG_NAME, 'input')[0].send_keys(username) #Account name
         driver.find_elements(By.TAG_NAME, 'input')[1].send_keys(password) #Password
         driver.find_elements(By.TAG_NAME, 'button')[1].click() #Login button
-        sleep(1)
+        sleep(3)
         
         size = pgui.size()
-        print(size)
         driver.set_window_size(size[0] / 3, size[1] * 0.63)
         driver.set_window_position(size[0] / 3, 0)
 
-        for _ in range(15):
-            try:
-                driver.find_element(By.CSS_SELECTOR, '._6q-tv')
-                break
-            except:
-                sleep(0.2)
-                pass
-
-        try:
-            driver.find_element(By.CSS_SELECTOR, '.HoLwm').click()
-        except:
-            pass
-
-        if len(keywords):
-            driver.find_elements(By.TAG_NAME, 'input')[0].send_keys("#")
-            likeLike(driver=driver)
+        # 「ログイン情報を保存しますか？」の画面が出たら次へ
+        for _ in range(150):
+            if driver.find_elements(By.CSS_SELECTOR, '._ab8j'): break
+            sleep(0.2)
 
         while len(keywords):
             keyword = keywords.pop(0)
@@ -62,5 +49,6 @@ def likeChrome(keywords="", username="", password=""):
         except:
             pass
         
-        if keywords != []:
+        if keywords:
+            sleep(0.1)
             likeChrome(keywords=keywords, username=username, password=password)
