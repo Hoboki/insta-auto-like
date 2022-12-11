@@ -4,14 +4,12 @@ import pyautogui as pgui
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from likeLike import likeLike
+from startLike import startLike
 
 # Let's noteの画面サイズ：1200*1920
 
 def startChrome(keywords="", username="", password=""):
     try:
-        # print(pgui.displayMousePosition())
-        
         driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.get("https://www.instagram.com/")
         
@@ -24,7 +22,7 @@ def startChrome(keywords="", username="", password=""):
         size = pgui.size()
         driver.set_window_size(size[0] / 3, size[1] * 0.63)
         driver.set_window_position(size[0] / 3, 0)
-
+        
         # 「ログイン情報を保存しますか？」の画面が出たら次へ
         for _ in range(150):
             if driver.find_elements(By.CSS_SELECTOR, '._ab8j'): break
@@ -34,7 +32,7 @@ def startChrome(keywords="", username="", password=""):
             keyword = keywords.pop(0)
             sleep(2)
             driver.get("https://www.instagram.com/explore/tags/"+keyword)
-            is_except_count_error = likeLike(driver=driver, keyword=keyword)
+            is_except_count_error = startLike(driver=driver, keyword=keyword)
             if is_except_count_error:
                 keywords = []
                 break
@@ -51,4 +49,4 @@ def startChrome(keywords="", username="", password=""):
         
         if keywords:
             sleep(0.1)
-            likeChrome(keywords=keywords, username=username, password=password)
+            startChrome(keywords=keywords, username=username, password=password)

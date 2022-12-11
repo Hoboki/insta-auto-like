@@ -11,7 +11,7 @@ dt = datetime.datetime
 def now():
     return dt.now().strftime("%m/%d %H:%M:%S")
 
-def likeLike(driver, keyword=""):
+def startLike(driver, keyword=""):
     n = 0
     n_all = 0
     n_interval = 100
